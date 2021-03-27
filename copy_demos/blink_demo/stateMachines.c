@@ -12,26 +12,26 @@ void state_advance()		/* sos */
   static char state = 0;
 
   switch(state){
-  case 0: red_on = 1; green_on = 1; state++;break;
-  case 1: red_on = 1; green_on = 1; state++;break;
-  case 2: red_on = 0; green_on = 0; state++;break;
-  case 3: red_on = 1; green_on = 1; state++;break;
-  case 4: red_on = 1; green_on = 1; state++;break;
-  case 5: red_on = 0; green_on = 0; state++;break;
-  case 6: red_on = 1; green_on = 1; state++;break;
-  case 7: red_on = 1; green_on = 1; state++;break;
+  case 0: red_on = 1; green_on ^= 1; state++;break;
+  case 1: red_on = 1; green_on ^= 1; state++;break;
+  case 2: red_on = 0; green_on ^= 0; state++;break;
+  case 3: red_on = 1; green_on ^= 1; state++;break;
+  case 4: red_on = 1; green_on ^= 1; state++;break;
+  case 5: red_on = 0; green_on ^= 0; state++;break;
+  case 6: red_on = 1; green_on ^= 1; state++;break;
+  case 7: red_on = 1; green_on ^= 1; state++;break;
     
-  case 8: red_on = 0; green_on = 0; state++;break;
-  case 9: red_on = 1; green_on = 1; state++;break;
-  case 10: red_on = 0; green_on = 0; state++;break;
-  case 11: red_on = 1; green_on = 1; state++;break;
-  case 12: red_on = 0; green_on = 0; state++;break;
-  case 13: red_on = 1; green_on = 1; state = 0; break;
+  case 8: red_on = 0; green_on ^= 0; state++;break;
+  case 9: red_on = 1; green_on ^= 1; state++;break;
+  case 10: red_on = 0; green_on ^= 0; state++;break;
+  case 11: red_on = 1; green_on ^= 1; state++;break;
+  case 12: red_on = 0; green_on ^= 0; state++;break;
+  case 13: red_on = 1; green_on ^= 1; state = 0; break;
     
   default: state = 0; 
   }
   
-
+  changed = 1;
   led_changed = changed;
   led_update();
 }
