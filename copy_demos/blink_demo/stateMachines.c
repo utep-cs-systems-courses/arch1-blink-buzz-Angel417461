@@ -5,8 +5,8 @@
 #include "buzzer.h"
 #include "switches.h"
 
-
-void state_advance()		/* sos */
+/*
+void state_advance()	       
 {
   char changed = 0;
 
@@ -53,3 +53,29 @@ void buzz_state_1_advance(){
   default: buzz_state = 0;
   } 
 }
+*/
+
+void switchSM(){
+  if(ssd1) red_on ^= 1;
+  else red_on = 0;
+  
+  if(ssd2) green_on ^= 1;
+  else green_on = 0;
+  
+  if(ssd3) buzzer_set_period(1000);
+  else buzzer_set_period(0);
+  
+  if(ssd4) buzzer_set_period(1000);
+  else buzzer_set_period(0);
+
+  led_changed = 1;
+  led_update();
+}
+
+void state_machine_1(){
+  static char state = 0;
+  switch (state){
+  case 0: red_on = 1; state++; break;
+  }
+}
+
